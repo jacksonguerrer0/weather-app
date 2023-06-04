@@ -3,32 +3,23 @@ const inquirer = require('inquirer');
 const {
   questionConfirm,
   questionMenu,
-  questionAddTask,
   questionSelectTask,
-  questionConfirmDeleteTask,
-  questionCheckList
 } = require('./definitions')
 
 const showMenu = async () => {
   console.clear()
   console.log("\n|||||||||||||||||||||||||||||||||||||".green)
-  console.log("           Select a option".green)
+  console.log("           Weather App".green)
   console.log("|||||||||||||||||||||||||||||||||||||\n".green)
 
-  const { TODO } = await inquirer.prompt(questionMenu)
+  const { menu } = await inquirer.prompt(questionMenu)
 
-  return TODO
+  return menu
 }
 
 const pause = async () => {
   const { pause } = await inquirer.prompt(questionConfirm)
   return pause
-}
-
-const addTaskInput = async () => {
-  const { title } = await inquirer.prompt(questionAddTask)
-
-  return title
 }
 
 const selectTask = async (listTasks = []) => {
@@ -52,35 +43,8 @@ const selectTask = async (listTasks = []) => {
   return questionDelete
 }
 
-const confirmDeleteTask = async () => {
-  const { confirmDelete } = await inquirer.prompt(questionConfirmDeleteTask)
-
-  return confirmDelete
-}
-
-const checkList = async (listTasks = []) => {
-  const choices = listTasks.map((task, i) => {
-    const enumeration = `${i + 1}. `.green
-
-    return {
-      name: enumeration + `${task.title}`,
-      value: task.id,
-      checked: task.completed_at ? true : false
-    }
-  })
-
-  questionCheckList[0].choices = choices
-  const { selectTasks } = await inquirer.prompt(questionCheckList)
-
-  return selectTasks
-}
-
-
 module.exports = {
   showMenu,
   pause,
-  addTaskInput,
   selectTask,
-  confirmDeleteTask,
-  checkList
 }

@@ -1,11 +1,27 @@
-console.log("==================ok =============")
-
-const { showMenu } = require("./helpers/inquirer.js")
+const { showMenu, pause } = require("./helpers/inquirer.js")
 
 const main = async () => {
-  const option = await showMenu()
+  let opt;
 
-  console.log("Option: ",option)
+  do {
+    opt = await showMenu()
+
+    switch (opt) {
+      case 0:
+        console.log('salir')
+        break;
+      case 1:
+        console.log('Search')
+        break;
+      case 2:
+        console.log('History')
+        break;
+      default:
+        break;
+    }
+
+    if ( opt !== '0' ) await pause()
+  } while (opt !== '0');
 }
 
 main()
