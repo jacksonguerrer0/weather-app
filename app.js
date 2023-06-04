@@ -1,6 +1,9 @@
-const { showMenu, pause } = require("./helpers/inquirer.js")
+const { showMenu, pause, inputCity } = require("./helpers/inquirer.js");
+const Searchs = require("./models/searchs.js");
+
 
 const main = async () => {
+  const searchs = new Searchs()
   let opt;
 
   do {
@@ -8,10 +11,12 @@ const main = async () => {
 
     switch (opt) {
       case 0:
-        console.log('salir')
+        console.log('Bye')
         break;
       case 1:
-        console.log('Search')
+        const city = await inputCity()
+
+        console.log('Search', city)
         break;
       case 2:
         console.log('History')
@@ -20,8 +25,8 @@ const main = async () => {
         break;
     }
 
-    if ( opt !== '0' ) await pause()
-  } while (opt !== '0');
+    if ( opt !== 0 ) await pause()
+  } while (opt !== 0);
 }
 
 main()

@@ -20,6 +20,14 @@ const questionConfirm = [
   }
 ]
 
+const questionInputCity = [
+  {
+    type: 'input',
+    name: 'city',
+    message: 'Write the city to search'
+  }
+]
+
 const questionSelectTask = [
   {
     type: 'list',
@@ -34,5 +42,6 @@ const questionSelectTask = [
 module.exports = {
   questionMenu,
   questionConfirm,
+  questionInputCity,
   questionSelectTask
 }

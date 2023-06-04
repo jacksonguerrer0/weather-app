@@ -3,7 +3,8 @@ const inquirer = require('inquirer');
 const {
   questionConfirm,
   questionMenu,
-  questionSelectTask,
+  questionInputCity,
+  questionSelectTask
 } = require('./definitions')
 
 const showMenu = async () => {
@@ -20,6 +21,11 @@ const showMenu = async () => {
 const pause = async () => {
   const { pause } = await inquirer.prompt(questionConfirm)
   return pause
+}
+
+const inputCity = async () => {
+  const { city } = await inquirer.prompt(questionInputCity)
+  return city
 }
 
 const selectTask = async (listTasks = []) => {
@@ -46,5 +52,6 @@ const selectTask = async (listTasks = []) => {
 module.exports = {
   showMenu,
   pause,
+  inputCity,
   selectTask,
 }
