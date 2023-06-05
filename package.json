@@ -7,7 +7,7 @@
     "node": "^18.16.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "dotenv -f .env node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,5 +17,8 @@
     "axios": "^1.4.0",
     "colors": "^1.4.0",
     "inquirer": "^6.5.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.1.4"
   }
 }
