@@ -4,7 +4,7 @@ const {
   questionConfirm,
   questionMenu,
   questionInputCity,
-  questionSelectTask
+  questionSelectCity
 } = require('./definitions')
 
 const showMenu = async () => {
@@ -28,13 +28,13 @@ const inputCity = async () => {
   return city
 }
 
-const selectTask = async (listTasks = []) => {
-  const choices = listTasks.map((task, i) => {
+const selectCity = async (cities = []) => {
+  const choices = cities.map((city, i) => {
     const enumeration = `${i + 1}. `.green
 
     return {
-      name: enumeration + `${task.title}`,
-      value: task.id
+      name: enumeration + `${city.name}`,
+      value: city.id
     }
   })
 
@@ -43,15 +43,15 @@ const selectTask = async (listTasks = []) => {
     value: 0
   })
 
-  questionSelectTask[0].choices = choices
-  const { questionDelete } = await inquirer.prompt(questionSelectTask)
+  questionSelectCity[0].choices = choices
+  const { questionSelect } = await inquirer.prompt(questionSelectCity)
 
-  return questionDelete
+  return questionSelect
 }
 
 module.exports = {
   showMenu,
   pause,
   inputCity,
-  selectTask,
+  selectCity,
 }

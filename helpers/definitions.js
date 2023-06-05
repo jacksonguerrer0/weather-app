@@ -28,12 +28,12 @@ const questionInputCity = [
   }
 ]
 
-const questionSelectTask = [
+const questionSelectCity = [
   {
     type: 'list',
-    name: 'questionDelete',
+    name: 'questionSelect',
     default: 'Default value',
-    message: "Delete",
+    message: "Select one for more details",
     choices: []
   }
 ]
@@ -43,5 +43,5 @@ module.exports = {
   questionMenu,
   questionConfirm,
   questionInputCity,
-  questionSelectTask
+  questionSelectCity
 }

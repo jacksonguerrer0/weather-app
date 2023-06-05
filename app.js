@@ -1,6 +1,7 @@
-const { showMenu, pause, inputCity } = require("./helpers/inquirer.js");
+const { showMenu, pause, inputCity, selectCity } = require("./helpers/inquirer.js");
 const Searchs = require("./models/searchs.js");
 const Reqres = require("./concepts/reqres/api_call.js");
+const { findItemInArray } = require("./helpers/utils.js");
 
 const main = async () => {
   const searchs = new Searchs()
@@ -14,9 +15,12 @@ const main = async () => {
         console.log('Bye :(')
         break;
       case 1:
-        const city = await inputCity()
-        const data = await searchs.searchCities(city)
-        console.log('Search', city, data)
+        const input = await inputCity()
+        const cities = await searchs.searchCities(input)
+        const id = await selectCity(cities)
+
+        const city_selected = findItemInArray(['id', id], cities)
+        console.log('selected,', city_selected)
         break;
       case 2:
         console.log('History')

@@ -22,8 +22,18 @@ class Mapbox {
 
       const res = await instance.get()
       const { data } = res
+      const { features } = data
 
-      return data
+      if (!features) return []
+
+      const cities = features.map(city => ({
+        id: city.id,
+        name: city.place_name,
+        longitude: city.center[0],
+        latitude: city.center[1]
+      }))
+
+      return cities
     } catch (error) {
       throw `Ups! a error: ${error}`
     }
