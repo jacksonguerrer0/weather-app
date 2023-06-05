@@ -1,10 +1,26 @@
 const axios = require('axios')
 
 class Mapbox {
-  static async getCities(city = '') {
+  constructor() {
+
+  }
+
+  get _paramsMapbox () {
+    return {
+      'access_token': process.env.TOKEN_MAPBOX,
+      'language': 'en',
+      'limit': 5
+    }
+  }
+
+  async getCities(city = '') {
     try {
-      const api = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?limit=5&language=en&access_token=${process.env.TOKEN_MAPBOX}`
-      const res = await axios.get(api)
+      const instance = axios.create({
+        baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json`,
+        params: this._paramsMapbox
+      })
+
+      const res = await instance.get()
       const { data } = res
 
       return data

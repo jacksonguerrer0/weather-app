@@ -1,7 +1,6 @@
 const { showMenu, pause, inputCity } = require("./helpers/inquirer.js");
 const Searchs = require("./models/searchs.js");
 const Reqres = require("./concepts/reqres/api_call.js");
-const Mapbox = require("./concepts/mapbox/api_call.js");
 
 const main = async () => {
   const searchs = new Searchs()
@@ -16,7 +15,7 @@ const main = async () => {
         break;
       case 1:
         const city = await inputCity()
-        const data = await Mapbox.getCities(city)
+        const data = await searchs.searchCities(city)
         console.log('Search', city, data)
         break;
       case 2:
