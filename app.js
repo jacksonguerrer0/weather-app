@@ -19,8 +19,15 @@ const main = async () => {
         const cities = await searchs.searchCities(input)
         const id = await selectCity(cities)
 
-        const city_selected = findItemInArray(['id', id], cities)
-        console.log('selected,', city_selected)
+        const city = findItemInArray(['id', id], cities)
+
+        console.log("\nInformation\n".green)
+        console.log('City:', city.name)
+        console.log('Lat:', city.latitude)
+        console.log('lng:', city.longitude)
+        console.log('Temperatura:')
+        console.log('Min:')
+        console.log('Max:')
         break;
       case 2:
         console.log('History')
