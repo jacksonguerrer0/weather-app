@@ -24,6 +24,7 @@ const pause = async () => {
 }
 
 const inputCity = async () => {
+  // todo: required input
   const { city } = await inquirer.prompt(questionInputCity)
   return city
 }

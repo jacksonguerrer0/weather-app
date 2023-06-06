@@ -21,13 +21,16 @@ const main = async () => {
 
         const city = findItemInArray(['id', id], cities)
 
+        const weather = await searchs.searchWeather(city.latitude, city.longitude)
+
         console.log("\nInformation\n".green)
         console.log('City:', city.name)
         console.log('Lat:', city.latitude)
         console.log('lng:', city.longitude)
-        console.log('Temperatura:')
-        console.log('Min:')
-        console.log('Max:')
+        console.log('Temperatura:', weather.temperature)
+        console.log('Min:', weather.min)
+        console.log('Max:', weather.max)
+        console.log('How is the climate? ', weather.description)
         break;
       case 2:
         console.log('History')
