@@ -1,8 +1,8 @@
+require('colors')
 const { showMenu, pause, inputCity, selectCity } = require("./helpers/inquirer.js");
 const Searchs = require("./models/searchs.js");
 const Reqres = require("./concepts/reqres/api_call.js");
 const { findItemInArray } = require("./helpers/utils.js");
-require('colors')
 
 const main = async () => {
   const searchs = new Searchs()
@@ -19,10 +19,10 @@ const main = async () => {
         const input = await inputCity()
         const cities = await searchs.searchCities(input)
         const id = await selectCity(cities)
-
+        if (id == 0 ) continue;
         const city = findItemInArray(['id', id], cities)
-
         const weather = await searchs.searchWeather(city.latitude, city.longitude)
+        searchs.setHistory(city.name)
 
         console.log("\nInformation\n".green)
         console.log('City:', city.name.yellow)
@@ -34,7 +34,8 @@ const main = async () => {
         console.log('How is the climate? ', weather.description.green)
         break;
       case 2:
-        console.log('History')
+        const history = searchs.getHistory()
+        console.log(history)
         break;
       default:
         break;
