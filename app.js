@@ -35,7 +35,11 @@ const main = async () => {
         break;
       case 2:
         const history = searchs.getHistory()
-        console.log(history)
+
+        history.forEach( (lugar, i) =>  {
+          const idx = `${ i + 1 }.`.green;
+          console.log( `${ idx } ${ lugar } ` );
+        })
         break;
       default:
         break;
