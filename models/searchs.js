@@ -9,6 +9,7 @@ class Searchs {
   _pathSearchsDB = './db/searchs.json'
 
   constructor() {
+    this._history = this.getDataPersisted()
   }
 
   async searchCities(city = '') {
@@ -31,15 +32,34 @@ class Searchs {
   }
 
   getHistory() {
-    return this._history
+    const { _history } = this
+
+    const historyCapitalized = _history.map(city => {
+      let cityCapitalized = city.split(' ')
+      cityCapitalized = cityCapitalized.map(word => word[0].toUpperCase() + word.substring(1))
+
+      return cityCapitalized.join(' ')
+    })
+
+    return historyCapitalized
   }
 
   persisHistoryInJSON() {
     const payload = {
       history: this._history
     }
-    console.log(payload, 'PAT')
     fs.writeFileSync(this._pathSearchsDB, JSON.stringify(payload))
+  }
+
+  getDataPersisted() {
+    if (!fs.existsSync(this._pathSearchsDB)) {
+      return []
+    }
+
+    const data = fs.readFileSync(this._pathSearchsDB, { encoding: 'utf-8' })
+    const { history } = JSON.parse(data)
+
+    return history
   }
 }
 
