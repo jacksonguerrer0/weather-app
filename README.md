@@ -2,5 +2,7 @@
 
 To run this app you need:
 
-- Mapbox token (Mapbox)[https://www.mapbox.com/]
-- OpenWeather token (OpenWeather)[https://openweathermap.org/]
+node ^18.16.0
+
+- Mapbox token. [Mapbox](https://www.mapbox.com/)
+- OpenWeather token. [OpenWeather](https://openweathermap.org/)
