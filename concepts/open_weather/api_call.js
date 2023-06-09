@@ -5,11 +5,9 @@ class Weather {
 
   }
 
-  _paramsOpenweather (lat, lon) {
-    console.log(lat, lon,  process.env.TOKEN_OPEWEATHER)
+  get _paramsOpenweather() {
     return {
-      'appid': process.env.TOKEN_OPEWEATHER,
-      lat, lon
+      'appid': process.env.TOKEN_OPEWEATHER
     }
   }
 
@@ -17,7 +15,7 @@ class Weather {
     try {
       const instance = axios.create({
         baseURL: `https://api.openweathermap.org/data/2.5/weather`,
-        params: this._paramsOpenweather(lat, lon)
+        params: {...this._paramsOpenweather, lat, lon}
       })
       const res = await instance.get()
       const { data } = res
